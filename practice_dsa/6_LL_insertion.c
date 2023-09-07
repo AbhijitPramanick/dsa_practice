@@ -38,6 +38,13 @@ void insertionAfterNode(struct node * ptr, int element){
     p->next = ptr->next;
     ptr->next = p;
 }
+
+struct node* insertBegin(struct node *ptr, int element){
+    struct node*p = (struct node*)malloc(sizeof(struct node));
+    p->data = element;
+    p->next = ptr;
+    return p;
+}
 int main()
 {
     struct node *head, *second, *third, *fourth;
@@ -66,6 +73,10 @@ int main()
     display(head);
 
     insertionAfterNode(second,77);
+
+    display(head);
+
+    head = insertBegin(head,111);
 
     display(head);
 
