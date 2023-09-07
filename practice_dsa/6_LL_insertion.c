@@ -30,6 +30,14 @@ void insertEnd(struct node *ptr, int data){
 
     printf("Insertion successful.\n");
 }
+
+void insertionAfterNode(struct node * ptr, int element){
+    struct node * p;
+    p = (struct node*) malloc(sizeof(struct node));
+    p->data = element;
+    p->next = ptr->next;
+    ptr->next = p;
+}
 int main()
 {
     struct node *head, *second, *third, *fourth;
@@ -54,6 +62,10 @@ int main()
     display(head);
 
     insertEnd(head,100);
+
+    display(head);
+
+    insertionAfterNode(second,77);
 
     display(head);
 
