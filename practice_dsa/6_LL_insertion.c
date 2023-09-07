@@ -28,7 +28,7 @@ void insertEnd(struct node *ptr, int data){
     //Insertion at the end
     ptr->next = p;
 
-    printf("Insertion successful.\n");
+    printf("\n\n------------\nInsertion successful.\n");
 }
 
 void insertionAfterNode(struct node * ptr, int element){
@@ -37,13 +37,36 @@ void insertionAfterNode(struct node * ptr, int element){
     p->data = element;
     p->next = ptr->next;
     ptr->next = p;
+    printf("\n\n------------\nInsertion after node successful.\n");
 }
 
 struct node* insertBegin(struct node *ptr, int element){
     struct node*p = (struct node*)malloc(sizeof(struct node));
     p->data = element;
     p->next = ptr;
+    printf("\n\n------------\nInsertion successful at beginning.\n");
     return p;
+}
+
+struct node* insertAfterIndex(struct node *ptr, int element, int index){
+    struct node*p = (struct node *)malloc(sizeof(struct node));
+    struct node*head = (struct node *)malloc(sizeof(struct node));
+    p->data = element;
+    int countIndex = 0;
+    if(index<=0){
+        return insertBegin(ptr,element);
+    }
+    else{
+        head = ptr;
+        while(countIndex!=index && ptr->next!=NULL){
+            countIndex++;
+            ptr=ptr->next;
+        }
+        p->next = ptr->next;
+        ptr->next = p;
+        printf("\n\n------------\nInsertion after index %d successful.\n",index);
+        return head;
+    }
 }
 int main()
 {
@@ -77,6 +100,10 @@ int main()
     display(head);
 
     head = insertBegin(head,111);
+
+    display(head);
+
+    head = insertAfterIndex(head,23,3);
 
     display(head);
 
