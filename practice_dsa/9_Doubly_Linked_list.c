@@ -50,6 +50,30 @@ struct node *  insertAsTail(struct node *ptr, int val){
     printf("\nInsertion as Tail successful.\n");
     return new;
 }
+void insertAfterNode(struct node * ptr, int val){
+    struct node * p = newNode();
+    p->data = val;
+
+    struct node *ptrNext = ptr->next;
+
+    p->next = ptrNext;
+    p->prev = ptr;
+    ptr->next = p;
+    ptrNext->prev = p;
+
+}
+void insertBeforeNode(struct node * ptr, int val){
+    struct node * p = newNode();
+    p->data = val;
+
+    struct node *ptrPrev = ptr->prev;
+
+    p->prev = ptrPrev;
+    p->next = ptr;
+    ptr->prev = p;
+    ptrPrev->next = p;
+
+}
 int main()
 {
     struct node *head,*second, *third, *fourth, *newTail;
@@ -87,5 +111,13 @@ int main()
     ForwardDisplay(head);
     BackwardDisplay(newTail);
 
+    //Can insert after any node, expect tail node
+    insertAfterNode(third,333);
+    ForwardDisplay(head);
+    BackwardDisplay(newTail);
+    //Can insert before any node, expect head node
+    insertBeforeNode(second,555);
+    ForwardDisplay(head);
+    BackwardDisplay(newTail);
     return 0;
 }
