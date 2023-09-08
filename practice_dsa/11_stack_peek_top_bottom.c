@@ -36,19 +36,16 @@ void push(struct stack *s,int val){
     printf("\nElement %d pushed successfully\n",val);
 }
 
-int pop(struct stack *s){
-    int poppedVal;
-    if(isEmpty(s)){
-        printf("\n***** Stack underflow. Cannot pop. Pop unsuccessful. *****\n");
-        return -1;
-    }
-    else{
-        poppedVal = s->arr[s->top--];
-        printf("\n%d popped successfully\n");
-        return poppedVal;
-    }
+void peek(struct stack *s, int pos){
+    int indexNo = (s->top)+1-pos;
+    printf("\nElement at position [%d] and Index no. [%d] is : %d\n",pos,indexNo,s->arr[indexNo]);
 }
-
+void stackBottom(struct stack *s){
+    printf("\nStack bottom element is %d\n",s->arr[0]);
+}
+void stackTop(struct stack *s){
+    printf("\nStack top element is %d\n",s->arr[s->top]);
+}
 int main()
 {
     struct stack *s;
@@ -56,37 +53,21 @@ int main()
 
     s = (struct stack*)malloc(sizeof(struct stack));
 
-    s->size = 3;
+    s->size = 10;
     s->top = -1;
     s->arr = (int*)malloc(s->size*sizeof(int));
 
-    push(s,1);
-    push(s,4);
+    push(s,180);
+    push(s,410);
+    push(s,76);
+    push(s,930);
+    push(s,96);
+    push(s,103);
     display(s);
 
-    push(s,7);
-    push(s,9);
-    display(s);
-
-    poppedVal = pop(s);
-    printf("\nThe popped value : %d\n",poppedVal);
-    display(s);
-
-    poppedVal = pop(s);
-    printf("\nThe popped value : %d\n",poppedVal);
-    display(s);
-
-    poppedVal = pop(s);
-    printf("\nThe popped value : %d\n",poppedVal);
-    display(s);
-
-    poppedVal = pop(s);
-    printf("\nThe popped value : %d\n",poppedVal);
-    display(s);
-
-    poppedVal = pop(s);
-    printf("\nThe popped value : %d\n",poppedVal);
-    display(s);
-
+    stackTop(s);
+    stackBottom(s);
+    peek(s,3);
+    peek(s,5);
     return 0;
 }
