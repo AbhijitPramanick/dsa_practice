@@ -9,6 +9,14 @@ struct stack{
     int *arr;
 };
 
+int isEmpty(struct stack *s){
+    if(s->top==-1) return 1;
+    else return 0;
+}
+int isFull(struct stack *s){
+    if(s->top>=s->size-1) return 1;
+    else return 0;
+}
 void display(struct stack *s){
     int i=0;
     printf("\nContents of the stack [%d elements]\n-----------------------------------------\n",(s->top)+1);
@@ -19,7 +27,7 @@ void display(struct stack *s){
 }
 
 void push(struct stack *s,int val){
-    if(s->top >= s->size-1){
+    if(isFull(s)){
         printf("\n***** Stack overflow. Cannot push. Push Unsuccessful!!! ***** \n");
         return;
     }
@@ -30,7 +38,7 @@ void push(struct stack *s,int val){
 
 int pop(struct stack *s){
     int poppedVal;
-    if(s->top < 0){
+    if(isEmpty(s)){
         printf("\n***** Stack underflow. Cannot pop. Pop unsuccessful. *****\n");
         return -1;
     }
